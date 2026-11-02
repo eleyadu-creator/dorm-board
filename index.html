@@ -25,7 +25,6 @@ body{
 }
 .shell{max-width:1180px;margin:0 auto}
 
-/* ---------- HERO ---------- */
 .hero{
   display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
   padding:20px 24px;border-radius:24px;color:#fff;
@@ -46,12 +45,10 @@ body{
 }
 .hero h1{font-size:21px;font-weight:800;letter-spacing:.5px}
 .hero .sub{font-size:12.5px;opacity:.88;margin-top:5px}
-.hero .sub b{font-weight:700}
 .hero-r{position:relative;z-index:1;text-align:right}
 .clock{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px}
 .clock small{display:block;font-size:11px;font-weight:500;opacity:.8;letter-spacing:1px;margin-top:2px}
 
-/* ---------- STATS ---------- */
 .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
 .stat{
   border:1px solid rgba(99,102,241,.10);background:#fff;border-radius:16px;padding:12px 14px;
@@ -69,7 +66,20 @@ body{
 .bar-out{background:linear-gradient(180deg,#60a5fa,#0284c7)}
 .bar-all{background:linear-gradient(180deg,#a78bfa,#4f46e5)}
 
-/* ---------- LAYOUT ---------- */
+.modebar{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:14px;padding:13px 18px;border-radius:16px;color:#3730a3;
+  background:linear-gradient(120deg,#eef2ff,#e0f2fe);border:1px solid #c7d2fe;box-shadow:var(--shadow-sm);
+}
+.modebar.on{background:linear-gradient(120deg,#ecfdf5,#f0fdfa);border-color:#a7f3d0;color:#065f46}
+.modebar .mb-text{font-size:13px;font-weight:600;flex:1;min-width:200px}
+.modebar .mb-btn{
+  padding:9px 16px;border-radius:12px;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;color:#fff;
+  background:linear-gradient(120deg,#4f46e5,#06b6d4);box-shadow:0 8px 18px rgba(79,70,229,.28);transition:.15s;
+}
+.modebar .mb-btn:hover{filter:brightness(1.06)}
+.modebar.on .mb-btn{background:#fff;color:#065f46;border:1px solid #a7f3d0}
+
 .layout{display:grid;grid-template-columns:238px 1fr;gap:16px;margin-top:16px;align-items:start}
 .side{
   background:#fff;border:1px solid rgba(99,102,241,.10);border-radius:20px;padding:14px;
@@ -102,8 +112,8 @@ body{
 .sbtn:hover{background:#f8faff;border-color:#c7d2fe;color:#4338ca}
 .sbtn.primary{background:linear-gradient(120deg,#4f46e5,#06b6d4);color:#fff;border:none;box-shadow:0 8px 18px rgba(79,70,229,.28)}
 .sbtn.primary:hover{filter:brightness(1.06);color:#fff}
+.sbtn:disabled{opacity:.5;cursor:not-allowed}
 
-/* ---------- BOARD ---------- */
 .main{display:grid;gap:14px}
 .group-head{display:flex;align-items:center;gap:10px;padding:2px 6px;margin-top:4px}
 .group-head .gt{font-size:14.5px;font-weight:800;letter-spacing:.4px}
@@ -155,6 +165,7 @@ body{
   min-width:78px;justify-content:center;
 }
 .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.9)}
+.pill.disabled{cursor:default;opacity:.92}
 .pill:hover{transform:translateY(-1px);filter:brightness(1.05)}
 .st-in{background:linear-gradient(135deg,#34d399,#059669);box-shadow:0 5px 12px rgba(16,185,129,.32)}
 .st-leave{background:linear-gradient(135deg,#fbbf24,#f97316);box-shadow:0 5px 12px rgba(245,158,11,.32)}
@@ -168,7 +179,6 @@ body{
 .note-btn.on{border-color:#fcd34d;background:#fffbeb;color:#d97706}
 .empty{padding:40px;text-align:center;color:var(--muted);font-size:13.5px;background:#fff;border-radius:18px;border:1px dashed var(--line)}
 
-/* ---------- POPOVER / MODAL ---------- */
 .pop{
   position:fixed;z-index:60;background:#fff;border-radius:16px;padding:8px;min-width:168px;
   box-shadow:0 18px 44px rgba(30,27,75,.22);border:1px solid rgba(99,102,241,.12);
@@ -196,20 +206,25 @@ body{
 }
 .dlg h3{font-size:16px;font-weight:800;margin-bottom:4px}
 .dlg p{font-size:12.5px;color:var(--muted);margin-bottom:14px}
-.dlg textarea{
+.dlg textarea,.dlg input{
   width:100%;min-height:96px;border:1px solid var(--line);border-radius:14px;padding:12px;resize:vertical;
   font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:.15s;background:#fbfcff;
 }
-.dlg textarea:focus{border-color:#a5b4fc;background:#fff;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+.dlg input{min-height:auto;padding:12px 14px;font-size:15px}
+.dlg textarea:focus,.dlg input:focus{border-color:#a5b4fc;background:#fff;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
 .dlg-acts{display:flex;gap:10px;margin-top:16px}
 .dlg-acts button{flex:1;padding:11px;border-radius:13px;border:1px solid var(--line);background:#fff;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:#374151;transition:.15s}
 .dlg-acts button:hover{background:#f8faff}
 .dlg-acts .ok{background:linear-gradient(120deg,#4f46e5,#06b6d4);color:#fff;border:none;box-shadow:0 8px 18px rgba(79,70,229,.28)}
-.dlg-acts .ok:hover{filter:brightness(1.06);background:linear-gradient(120deg,#4f46e5,#06b6d4)}
+.dlg-acts .ok:hover{filter:brightness(1.06)}
+.dlg .hint{font-size:11.5px;color:#94a3b8;margin-top:8px;line-height:1.5}
+.dlg .hint code{background:#eef2ff;color:#4338ca;padding:1px 6px;border-radius:6px;font-size:11px}
+#pwInput:focus{border-color:#a5b4fc;background:#fff;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+
 .toast{
   position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);background:#111827;color:#fff;
   padding:11px 20px;border-radius:99px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;
-  transition:.25s;z-index:99;box-shadow:0 14px 30px rgba(0,0,0,.25);
+  transition:.25s;z-index:99;box-shadow:0 14px 30px rgba(0,0,0,.25);max-width:90vw;text-align:center;
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -234,16 +249,21 @@ body{
 
   <header class="hero">
     <div class="hero-l">
-      <div class="logo" id="logoChar">班</div>
+      <div class="logo">班</div>
       <div>
         <h1>班主任学生管理工作台</h1>
-        <p class="sub"><span id="today">--</span> · 共 <b id="heroTotal">0</b> 名学生 · <b id="heroRoom">0</b> 间宿舍 · 数据自动保存在本机</p>
+        <p class="sub"><span id="today">--</span> · 共 <b id="heroTotal">0</b> 名学生 · <b id="heroRoom">0</b> 间宿舍 · GitHub 实时同步</p>
       </div>
     </div>
     <div class="hero-r">
       <div class="clock"><span id="clock">--:--:--</span><small>实时状态</small></div>
     </div>
   </header>
+
+  <div class="modebar" id="modebar">
+    <span class="mb-text" id="mbText">当前为只读模式（学生可查看，班主任解锁后可修改并同步到 GitHub）</span>
+    <button class="mb-btn" id="modeBtn">班主任解锁</button>
+  </div>
 
   <section class="stats" id="stats"></section>
 
@@ -254,9 +274,10 @@ body{
       <div class="side-title">宿舍导航</div>
       <div id="navRooms"></div>
       <div class="side-actions">
-        <button class="sbtn primary" id="btnAllIn">一键全部设为在寝</button>
+        <button class="sbtn" id="btnRefresh">刷新数据</button>
+        <button class="sbtn primary" id="btnAllIn" disabled>全部设为在寝</button>
         <button class="sbtn" id="btnExport">导出名单</button>
-        <button class="sbtn" id="btnReset">清空记录</button>
+        <button class="sbtn" id="btnReset" disabled>清空记录</button>
       </div>
     </aside>
     <main class="main" id="board"></main>
@@ -281,38 +302,31 @@ body{
   </div>
 </div>
 
+<div class="mask" id="pwMask">
+  <div class="dlg">
+    <h3>班主任解锁</h3>
+    <p>输入密码与 GitHub Token 后可修改并同步</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="密码（默认 12123）" />
+    <div style="height:10px"></div>
+    <input id="pwToken" type="password" autocomplete="off" placeholder="GitHub Token（Personal Access Token）" />
+    <div id="pwErr" style="color:#dc2626;font-size:12.5px;margin-top:8px;min-height:16px"></div>
+    <div class="hint">Token 仅保存在本机浏览器（关闭标签页即清除），用于把改动写回 GitHub 仓库；学生无需 Token，打开即可看。<br>生成地址：<code>github.com/settings/tokens</code>（勾选 repo 权限）</div>
+    <div class="dlg-acts">
+      <button id="pwCancel">取消</button>
+      <button class="ok" id="pwOk">解锁</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= 数据（来自《宿舍分寝表》） ================= */
-const DATA = [
-  {
-    id: "girls", title: "女生 · 3号瑾苑楼", short: "3号瑾苑楼",
-    rooms: [
-      { room: "310", members: ["陈星霓","崔煜苒","范文静","井岚煜","夏宛茹","丁雨珊"] },
-      { room: "309", members: ["金语心","徐婷睿","张怡","张紫涵","曹伊嘉","陈瑾涵"] },
-      { room: "308", members: ["陈依","郭彩云","李佳灵","裴丹丹","肖诺羲","王婉茹"] },
-      { room: "307", members: ["李佳艺","杨瑾萱","徐雨涵","徐艺恬","张优优","刘伊萱"] },
-      { room: "223", members: ["田玉溪"] }
-    ]
-  },
-  {
-    id: "boys", title: "男生 · 1号睿园楼", short: "1号睿园楼",
-    rooms: [
-      { room: "526", members: ["高奥宁","岳一帆","张烜赫","罗志豪","任旭柯","孙俊杰"] },
-      { room: "527", members: ["田博文","张清泉","王泽","陈鹏旭","朱芃语","谢宗言"] },
-      { room: "528", members: ["古钦","郭传厚","郭伟航","李嘉硕","吕宜航","任天宇"] },
-      { room: "4号楼107", members: ["徐杨毅","周天赐","朱志祥","张怡旺","左钰尧","王义涵"] },
-      { room: "4号楼109", members: ["胡雅伦","赵晨洋","黄耀贤","王子涵","高羽祥","蒋延冲"] }
-    ]
-  }
-];
-
+/* ================= 状态定义 ================= */
 const STATUS = {
-  in:     { label: "在寝", color: "#10b981", flag: "in" },
-  leave:  { label: "请假", color: "#f59e0b", flag: "leave" },
-  absent: { label: "未归", color: "#ef4444", flag: "absent" },
-  out:    { label: "外出", color: "#3b82f6", flag: "out" }
+  in:     { label: "在寝", color: "#10b981" },
+  leave:  { label: "请假", color: "#f59e0b" },
+  absent: { label: "未归", color: "#ef4444" },
+  out:    { label: "外出", color: "#3b82f6" }
 };
 const ORDER = ["in", "leave", "absent", "out"];
 const FILTERS = [
@@ -323,23 +337,50 @@ const FILTERS = [
   { id: "out",    label: "外出",     color: "linear-gradient(180deg,#60a5fa,#0284c7)" }
 ];
 
-/* ================= 存储 ================= */
-const KEY = "dorm-desk-v1";
-let store = {};
-try { store = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { store = {}; }
+/* ================= GitHub 同步配置 ================= */
+const PASSWORD = "12123";
+const GH_OWNER = "eleyadu-creator";
+const GH_REPO  = "dorm-board";
+const GH_BRANCH = "main";
+const GH_PATH  = "data.json";
+const RAW_URL  = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${GH_PATH}`;
+const API_GET  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}?ref=${GH_BRANCH}`;
+const API_PUT  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
 
-function idOf(g, room, name) { return g.id + "|" + room + "|" + name; }
-function rec(id) { return store[id] || {}; }
-function stOf(id) { const r = rec(id); return STATUS[r.s] ? r.s : "in"; }
-function noteOf(id) { return rec(id).note || ""; }
-function persist() {
-  try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
-}
+/* ================= 名单（来自宿舍分寝表.xlsx，实际条目） ================= */
+const GROUPS = [
+  { id: 'girls', title: '女生 · 3号瑾苑楼', short: '3号瑾苑楼' },
+  { id: 'boys',  title: '男生 · 1号睿园楼', short: '1号睿园楼' }
+];
+const ROOMS = {
+  girls: {
+    '310': ['陈星霓','崔煜苒','范文静','井岚煜','夏宛茹','丁雨珊'],
+    '309': ['金语心','徐婷睿','张怡','张紫涵','曹伊嘉','陈瑾涵'],
+    '308': ['陈依','郭彩云','李佳灵','裴丹丹','肖诺羲','王婉茹'],
+    '307': ['李佳艺','杨瑾萱','徐雨涵','徐艺恬','张优优','刘伊萱'],
+    '223': ['田玉溪']
+  },
+  boys: {
+    '526':     ['高奥宁','岳一帆','张烜赫','罗志豪','任旭柯','孙俊杰'],
+    '527':     ['田博文','张清泉','王泽','陈鹏旭','朱芃语','谢宗言'],
+    '528':     ['古钦','郭传厚','郭伟航','李嘉硕','吕宜航','任天宇'],
+    '4号楼107': ['徐杨毅','周天赐','朱志祥','张怡旺','左钰尧','王义涵'],
+    '4号楼109': ['胡雅伦','赵晨洋','黄耀贤','王子涵','高羽祥','蒋延冲']
+  }
+};
+const STUDENTS = [];
+GROUPS.forEach(g => {
+  Object.keys(ROOMS[g.id]).forEach(room => {
+    ROOMS[g.id][room].forEach(name => {
+      STUDENTS.push({ id: g.id + '|' + room + '|' + name, name, room, group: g.id, groupTitle: g.title, short: g.short });
+    });
+  });
+});
 
-/* ================= 状态 ================= */
-let curFilter = "all";
-let curSearch = "";
-let popTarget = null;
+/* ================= 运行时数据 ================= */
+let state = {}, editable = false, ghToken = "";
+let curFilter = "all", curSearch = "", popTarget = null, dlgTarget = null;
+try { ghToken = sessionStorage.getItem("ghToken") || ""; } catch (e) {}
 
 const boardEl   = document.getElementById("board");
 const statsEl   = document.getElementById("stats");
@@ -351,133 +392,195 @@ const maskEl    = document.getElementById("mask");
 const dlgText   = document.getElementById("dlgText");
 const dlgTitle  = document.getElementById("dlgTitle");
 const dlgSub    = document.getElementById("dlgSub");
-let dlgTarget = null;
+const pwMask    = document.getElementById("pwMask");
+const pwInput   = document.getElementById("pwInput");
+const pwToken   = document.getElementById("pwToken");
+const pwErr     = document.getElementById("pwErr");
+
+/* ================= GitHub 读写 ================= */
+function ghHeaders() {
+  const h = { "Accept": "application/vnd.github+json" };
+  if (ghToken) h["Authorization"] = "Bearer " + ghToken;
+  return h;
+}
+function b64encode(str) { return btoa(unescape(encodeURIComponent(str))); }
+function buildData() {
+  const o = {};
+  STUDENTS.forEach(s => { const x = state[s.id] || { status: "in", note: "" }; o[s.id] = { status: x.status, note: x.note }; });
+  return o;
+}
+function applyData(j) {
+  STUDENTS.forEach(s => {
+    const rec = (j && j[s.id]) || {};
+    state[s.id] = { status: rec.status || "in", note: rec.note || "" };
+  });
+}
+async function loadData(silent) {
+  const fetchNoStore = (u) => fetch(u, { cache: "no-store" });
+  try {
+    const r = await fetchNoStore(RAW_URL + "?_=" + Date.now());
+    if (r.ok) { applyData(await r.json()); if (!silent) toast("数据已加载"); return true; }
+  } catch (e) {}
+  try {
+    const r2 = await fetchNoStore("data.json?_=" + Date.now());
+    if (r2.ok) { applyData(await r2.json()); if (!silent) toast("数据已加载"); return true; }
+  } catch (e2) {}
+  if (!silent) toast("数据加载失败，请检查网络");
+  return false;
+}
+async function githubSave() {
+  const payload = JSON.stringify(buildData(), null, 2);
+  const content = b64encode(payload);
+  let sha = null;
+  try { const g = await fetch(API_GET, { headers: ghHeaders() }); if (g.ok) { const j = await g.json(); sha = j.sha; } } catch (e) {}
+  const body = { message: "更新宿舍查寝状态", content, branch: GH_BRANCH };
+  if (sha) body.sha = sha;
+  try {
+    const r = await fetch(API_PUT, {
+      method: "PUT",
+      headers: Object.assign(ghHeaders(), { "Content-Type": "application/json" }),
+      body: JSON.stringify(body)
+    });
+    return r.ok;
+  } catch (e) { return false; }
+}
 
 /* ================= 渲染 ================= */
 function counts() {
   const c = { all: 0, in: 0, leave: 0, absent: 0, out: 0 };
-  DATA.forEach(g => g.rooms.forEach(r => r.members.forEach(n => {
-    c.all++; c[stOf(idOf(g, r.room, n))]++;
-  })));
+  STUDENTS.forEach(s => { c.all++; c[state[s.id].status]++; });
   return c;
 }
+function stOf(id) { return state[id] ? state[id].status : "in"; }
+function noteOf(id) { return state[id] ? (state[id].note || "") : ""; }
 
 function renderStats() {
   const c = counts();
   statsEl.innerHTML = FILTERS.map(f => `
     <button class="stat ${curFilter === f.id ? "active" : ""}" data-filter="${f.id}">
       <span class="bar bar-${f.id}"></span>
-      <span>
-        <span class="num">${c[f.id]}</span>
-        <span class="lbl">${f.label}</span>
-      </span>
+      <span><span class="num">${c[f.id]}</span><span class="lbl">${f.label}</span></span>
     </button>`).join("");
 }
-
 function renderFilters() {
   const c = counts();
   filtersEl.innerHTML = FILTERS.map(f => `
     <button class="s-item ${curFilter === f.id ? "active" : ""}" data-filter="${f.id}">
-      <span><span class="dot" style="background:${f.color}"></span>${f.label}</span>
-      <b>${c[f.id]}</b>
+      <span><span class="dot" style="background:${f.color}"></span>${f.label}</span><b>${c[f.id]}</b>
     </button>`).join("");
 }
-
 function renderNav() {
   let h = "";
-  DATA.forEach(g => {
+  GROUPS.forEach(g => {
     h += `<div class="side-title" style="margin:10px 4px 6px">${g.short}</div>`;
-    g.rooms.forEach(r => {
-      const inN = r.members.filter(n => stOf(idOf(g, r.room, n)) === "in").length;
-      const full = inN === r.members.length;
-      h += `<button class="nav-room" data-goto="${g.id}|${r.room}">
-              <span class="nr">${r.room}</span>
-              <span class="nc" style="color:${full ? "#10b981" : "#f59e0b"}">${inN}/${r.members.length}</span>
+    const rooms = [...new Set(STUDENTS.filter(s => s.group === g.id).map(s => s.room))];
+    rooms.forEach(room => {
+      const members = STUDENTS.filter(s => s.group === g.id && s.room === room);
+      const inN = members.filter(s => stOf(s.id) === "in").length;
+      const full = inN === members.length;
+      h += `<button class="nav-room" data-goto="${g.id}|${room}">
+              <span class="nr">${room}</span>
+              <span class="nc" style="color:${full ? "#10b981" : "#f59e0b"}">${inN}/${members.length}</span>
             </button>`;
     });
   });
   navEl.innerHTML = h;
 }
-
 function renderBoard() {
   const kw = curSearch.trim();
-  let html = "";
-  let shown = 0;
-
-  DATA.forEach(g => {
-    let roomsHtml = "";
-    let gTotal = 0;
-
-    g.rooms.forEach(r => {
-      const list = r.members
-        .map(n => ({ name: n, id: idOf(g, r.room, n) }))
-        .filter(m => {
-          if (kw && m.name.indexOf(kw) === -1) return false;
-          if (curFilter !== "all" && stOf(m.id) !== curFilter) return false;
-          return true;
-        });
+  let html = "", shown = 0;
+  GROUPS.forEach(g => {
+    const members = STUDENTS.filter(s => s.group === g.id);
+    const roomMap = {};
+    members.forEach(s => { (roomMap[s.room] = roomMap[s.room] || []).push(s); });
+    let roomsHtml = "", gTotal = 0;
+    Object.keys(roomMap).forEach(room => {
+      const list = roomMap[room].filter(s => {
+        if (kw && s.name.indexOf(kw) === -1) return false;
+        if (curFilter !== "all" && stOf(s.id) !== curFilter) return false;
+        return true;
+      });
       if (!list.length) return;
-
-      const inN   = r.members.filter(n => stOf(idOf(g, r.room, n)) === "in").length;
-      const full  = inN === r.members.length;
+      const inN = roomMap[room].filter(s => stOf(s.id) === "in").length;
+      const full = inN === roomMap[room].length;
       gTotal += list.length;
-
-      const rows = list.map(m => {
-        const s    = stOf(m.id);
-        const note = noteOf(m.id);
+      const rows = list.map(s => {
+        const st = stOf(s.id), note = noteOf(s.id);
         return `<div class="row">
           <div class="who">
-            <div class="av">${m.name.slice(0, 1)}</div>
+            <div class="av">${s.name.slice(0,1)}</div>
             <div class="who-txt">
-              <span class="nm">${m.name}</span>
+              <span class="nm">${s.name}</span>
               ${note ? `<span class="nt" title="${note}">备注：${note}</span>` : ""}
             </div>
           </div>
           <div class="acts">
-            <button class="pill st-${s}" data-pop="${m.id}">${STATUS[s].label}</button>
-            <button class="note-btn ${note ? "on" : ""}" data-note="${m.id}" title="备注">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
-              </svg>
+            <button class="pill st-${st} ${editable ? "" : "disabled"}" data-pop="${s.id}">${STATUS[st].label}</button>
+            <button class="note-btn ${note ? "on" : ""}" data-note="${s.id}" title="备注">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
             </button>
           </div>
         </div>`;
       }).join("");
-
-      roomsHtml += `<section class="room ${full ? "" : "warn"}" id="room-${g.id}-${r.room}">
+      roomsHtml += `<section class="room ${full ? "" : "warn"}" id="room-${g.id}-${room}">
         <div class="room-head">
-          <span class="room-id">${r.room} 室</span>
+          <span class="room-id">${room} 室</span>
           <span class="room-sub">${g.short}</span>
-          <span class="room-badge">${inN}/${r.members.length} ${full ? "全寝在寝" : "在寝"}</span>
+          <span class="room-badge">${inN}/${roomMap[room].length} ${full ? "全寝在寝" : "在寝"}</span>
         </div>
         <div class="rows">${rows}</div>
       </section>`;
     });
-
-    if (roomsHtml) {
-      shown += gTotal;
-      html += `<div class="group-head"><span class="gt">${g.title}</span><span class="gc">${gTotal} 人</span></div>${roomsHtml}`;
-    }
+    if (roomsHtml) { shown += gTotal; html += `<div class="group-head"><span class="gt">${g.title}</span><span class="gc">${gTotal} 人</span></div>${roomsHtml}`; }
   });
-
-  if (!html) {
-    html = `<div class="empty">没有符合条件的学生</div>`;
-  }
-  boardEl.innerHTML = html;
+  boardEl.innerHTML = html || `<div class="empty">没有符合条件的学生</div>`;
 }
-
+function renderMode() {
+  const bar = document.getElementById("modebar");
+  const txt = document.getElementById("mbText");
+  const btn = document.getElementById("modeBtn");
+  document.getElementById("btnAllIn").disabled = !editable;
+  document.getElementById("btnReset").disabled = !editable;
+  if (editable) {
+    bar.classList.add("on");
+    txt.textContent = "编辑模式（已解锁，修改将实时同步到 GitHub）";
+    btn.textContent = "锁定为只读";
+  } else {
+    bar.classList.remove("on");
+    txt.textContent = "当前为只读模式（学生可查看，班主任解锁后可修改并同步到 GitHub）";
+    btn.textContent = "班主任解锁";
+  }
+}
 function renderAll() {
-  renderStats();
-  renderFilters();
-  renderNav();
-  renderBoard();
+  renderStats(); renderFilters(); renderNav(); renderBoard(); renderMode();
   const c = counts();
   document.getElementById("heroTotal").textContent = c.all;
-  document.getElementById("heroRoom").textContent =
-    DATA.reduce((a, g) => a + g.rooms.length, 0);
+  document.getElementById("heroRoom").textContent = [...new Set(STUDENTS.map(s => s.group + s.room))].length;
 }
 
-/* ================= 状态选择浮层 ================= */
+/* ================= 编辑：状态 / 备注 ================= */
+function ensureEdit() {
+  if (!editable) { toast("请先点上方「班主任解锁」再修改"); return false; }
+  return true;
+}
+async function setStatus(id, status) {
+  if (!ensureEdit()) return;
+  state[id].status = status; renderAll();
+  toast("保存中…");
+  const ok = await githubSave();
+  toast(ok ? ("已同步：" + STATUS[status].label) : "保存失败，请检查 Token 或网络");
+  if (ok) setTimeout(() => loadData(true), 1500);
+}
+async function setNote(id, note) {
+  if (!ensureEdit()) return;
+  state[id].note = note; renderAll();
+  toast("保存中…");
+  const ok = await githubSave();
+  toast(ok ? (note ? "备注已保存" : "备注已清除") : "保存失败，请检查 Token 或网络");
+  if (ok) setTimeout(() => loadData(true), 1500);
+}
+
+/* ================= 浮层 / 弹窗 ================= */
 function openPop(anchor, id) {
   popTarget = id;
   const cur = stOf(id);
@@ -485,173 +588,162 @@ function openPop(anchor, id) {
     <button class="pop-b ${cur === k ? "cur" : ""}" data-set="${k}">
       <span class="sw" style="background:${STATUS[k].color}"></span>${STATUS[k].label}
     </button>`).join("") +
-    `<div class="pop-sep"></div>
-     <button class="pop-b" data-editnote="1">
-       <span class="sw" style="background:#c7d2fe"></span>编辑备注
-     </button>`;
-
+    `<div class="pop-sep"></div><button class="pop-b" data-editnote="1">
+      <span class="sw" style="background:#c7d2fe"></span>编辑备注</button>`;
   popEl.classList.add("show");
   const r = anchor.getBoundingClientRect();
-  const w = popEl.offsetWidth;
-  const h = popEl.offsetHeight;
-  let left = Math.min(r.left, window.innerWidth - w - 12);
-  left = Math.max(12, left);
+  const w = popEl.offsetWidth, h = popEl.offsetHeight;
+  let left = Math.min(r.left, window.innerWidth - w - 12); left = Math.max(12, left);
   let top = r.bottom + 8;
   if (top + h > window.innerHeight - 12) top = Math.max(12, r.top - h - 8);
-  popEl.style.left = left + "px";
-  popEl.style.top = top + "px";
+  popEl.style.left = left + "px"; popEl.style.top = top + "px";
 }
 function closePop() { popEl.classList.remove("show"); popTarget = null; }
-
-/* ================= 备注弹窗 ================= */
 function openNote(id) {
   dlgTarget = id;
-  const parts = id.split("|");
-  dlgTitle.textContent = "备注 · " + parts[2];
-  dlgSub.textContent = (parts[0] === "girls" ? "女生 3号瑾苑楼 " : "男生 1号睿园楼 ") + parts[1] + " 室";
+  const s = STUDENTS.find(x => x.id === id);
+  dlgTitle.textContent = "备注 · " + s.name;
+  dlgSub.textContent = s.groupTitle + " · " + s.room + " 室";
   dlgText.value = noteOf(id);
   maskEl.classList.add("show");
   setTimeout(() => dlgText.focus(), 60);
 }
 function closeNote() { maskEl.classList.remove("show"); dlgTarget = null; }
 
+/* ================= 解锁 / 锁定 ================= */
+function openPw() {
+  pwErr.textContent = "";
+  pwInput.value = "";
+  try { const t = sessionStorage.getItem("ghToken"); if (t) pwToken.value = t; } catch (e) {}
+  pwMask.classList.add("show");
+  setTimeout(() => pwInput.focus(), 60);
+}
+function closePw() { pwMask.classList.remove("show"); }
+async function doUnlock() {
+  const pw = pwInput.value.trim();
+  const tk = pwToken.value.trim();
+  if (pw !== PASSWORD) { pwErr.textContent = "密码错误"; pwInput.select(); return; }
+  if (!tk) { pwErr.textContent = "请填写 GitHub Token（用于保存数据）"; pwToken.focus(); return; }
+  ghToken = tk;
+  try { sessionStorage.setItem("ghToken", tk); } catch (e) {}
+  editable = true; closePw(); renderMode(); renderBoard();
+  toast("已解锁，修改将同步到 GitHub");
+}
+function lock() {
+  editable = false; renderMode(); renderBoard();
+  toast("已锁定为只读模式");
+}
+async function resetAll() {
+  if (!editable) { toast("请先解锁再清空记录"); return; }
+  if (!confirm("确定清空所有查寝记录？将恢复为全部「在寝」。")) return;
+  STUDENTS.forEach(s => { state[s.id] = { status: "in", note: "" }; });
+  renderAll(); toast("保存中…");
+  const ok = await githubSave();
+  toast(ok ? "已清空记录" : "保存失败");
+  if (ok) setTimeout(() => loadData(true), 1500);
+}
+async function setAllIn() {
+  if (!editable) { toast("请先解锁再批量操作"); return; }
+  STUDENTS.forEach(s => { state[s.id] = { status: "in", note: "" }; });
+  renderAll(); toast("保存中…");
+  const ok = await githubSave();
+  toast(ok ? "已全部设为在寝" : "保存失败");
+  if (ok) setTimeout(() => loadData(true), 1500);
+}
+
 /* ================= 事件 ================= */
 document.addEventListener("click", e => {
   const t = e.target;
-
   const popBtn = t.closest("[data-pop]");
   if (popBtn) {
     const id = popBtn.getAttribute("data-pop");
     if (popTarget === id && popEl.classList.contains("show")) closePop();
     else openPop(popBtn, id);
-    e.stopPropagation();
-    return;
+    e.stopPropagation(); return;
   }
-
   const setBtn = t.closest("[data-set]");
   if (setBtn && popTarget) {
     const k = setBtn.getAttribute("data-set");
-    const id = popTarget;
-    const r = rec(id);
-    store[id] = { s: k, note: r.note || "" };
-    if (!store[id].note) delete store[id].note;
-    persist(); closePop(); renderAll(); toast("已更新为「" + STATUS[k].label + "」");
-    return;
+    closePop(); setStatus(popTarget, k); return;
   }
-
   const editNote = t.closest("[data-editnote]");
-  if (editNote && popTarget) {
-    const id = popTarget;
-    closePop(); openNote(id);
-    return;
-  }
-
+  if (editNote && popTarget) { const id = popTarget; closePop(); openNote(id); return; }
   const noteBtn = t.closest("[data-note]");
   if (noteBtn) { openNote(noteBtn.getAttribute("data-note")); return; }
-
   const fBtn = t.closest("[data-filter]");
   if (fBtn) { curFilter = fBtn.getAttribute("data-filter"); renderAll(); return; }
-
   const goBtn = t.closest("[data-goto]");
   if (goBtn) {
     const p = goBtn.getAttribute("data-goto").split("|");
     const el = document.getElementById("room-" + p[0] + "-" + p[1]);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      el.animate(
-        [{ boxShadow: "0 0 0 0 rgba(99,102,241,.55)" }, { boxShadow: "0 0 0 8px rgba(99,102,241,0)" }],
-        { duration: 900, easing: "ease-out" }
-      );
-    }
+    if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.animate([{ boxShadow: "0 0 0 0 rgba(99,102,241,.55)" }, { boxShadow: "0 0 0 8px rgba(99,102,241,0)" }], { duration: 900, easing: "ease-out" }); }
     return;
   }
-
   if (!popEl.contains(t)) closePop();
 });
-
 maskEl.addEventListener("click", e => { if (e.target === maskEl) closeNote(); });
 document.getElementById("dlgCancel").addEventListener("click", closeNote);
 document.getElementById("dlgSave").addEventListener("click", () => {
   if (!dlgTarget) return;
-  const id = dlgTarget;
-  const txt = dlgText.value.trim();
-  const s = stOf(id);
-  if (txt) store[id] = { s: s, note: txt };
-  else if (store[id]) { store[id].note = ""; delete store[id].note; }
-  if (store[id] && !store[id].note && store[id].s === "in") delete store[id];
-  persist(); closeNote(); renderAll(); toast("备注已保存");
+  setNote(dlgTarget, dlgText.value.trim());
+  closeNote();
 });
-
-document.getElementById("btnAllIn").addEventListener("click", () => {
-  if (!confirm("确定把全部学生状态设为「在寝」吗？")) return;
-  DATA.forEach(g => g.rooms.forEach(r => r.members.forEach(n => {
-    const id = idOf(g, r.room, n);
-    const note = noteOf(id);
-    store[id] = { s: "in" };
-    if (note) store[id].note = note;
-  })));
-  persist(); renderAll(); toast("已全部设为在寝");
-});
-
-document.getElementById("btnReset").addEventListener("click", () => {
-  if (!confirm("确定清空全部状态与备注记录吗？（学生名单不受影响）")) return;
-  store = {}; persist(); renderAll(); toast("已清空全部记录");
-});
-
+pwMask.addEventListener("click", e => { if (e.target === pwMask) closePw(); });
+document.getElementById("pwCancel").addEventListener("click", closePw);
+document.getElementById("pwOk").addEventListener("click", doUnlock);
+pwInput.addEventListener("keydown", e => { if (e.key === "Enter") doUnlock(); });
+pwToken.addEventListener("keydown", e => { if (e.key === "Enter") doUnlock(); });
+document.getElementById("modeBtn").addEventListener("click", () => { editable ? lock() : openPw(); });
+document.getElementById("btnRefresh").addEventListener("click", async () => { await loadData(false); renderAll(); });
+document.getElementById("btnReset").addEventListener("click", resetAll);
+document.getElementById("btnAllIn").addEventListener("click", setAllIn);
 document.getElementById("btnExport").addEventListener("click", () => {
   const head = ["楼栋", "宿舍", "姓名", "状态", "备注"].join(",");
-  const lines = [];
-  DATA.forEach(g => g.rooms.forEach(r => r.members.forEach(n => {
-    const id = idOf(g, r.room, n);
-    const note = noteOf(id).replace(/"/g, '""');
-    lines.push([g.short, r.room, n, STATUS[stOf(id)].label, note ? '"' + note + '"' : ""].join(","));
-  })));
-  const csv = "\ufeff" + [head].concat(lines).join("\r\n");
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-  const d = new Date();
-  const stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0");
+  const lines = STUDENTS.map(s => {
+    const note = noteOf(s.id).replace(/"/g, '""');
+    return [s.short, s.room, s.name, STATUS[stOf(s.id)].label, note ? '"' + note + '"' : ""].join(",");
+  });
+  const csv = "﻿" + [head].concat(lines).join("\r\n");
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "宿舍查寝_" + stamp + ".csv";
-  a.click();
-  URL.revokeObjectURL(a.href);
+  a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  a.download = "宿舍查寝_" + d.getFullYear() + p(d.getMonth()+1) + p(d.getDate()) + ".csv";
+  a.click(); URL.revokeObjectURL(a.href);
   toast("已导出 CSV 名单");
 });
 
 /* ================= 搜索 / 时钟 / 提示 ================= */
 const searchInput = document.createElement("input");
-searchInput.type = "search";
-searchInput.placeholder = "搜索学生姓名…";
+searchInput.type = "search"; searchInput.placeholder = "搜索学生姓名…";
 searchInput.style.cssText = "margin-top:12px;width:100%;padding:12px 16px;border-radius:16px;border:1px solid rgba(99,102,241,.16);background:#fff;font-family:inherit;font-size:14px;outline:none;box-shadow:0 4px 14px rgba(67,56,202,.07)";
 searchInput.addEventListener("input", () => { curSearch = searchInput.value; renderBoard(); });
 searchInput.addEventListener("focus", () => { searchInput.style.borderColor = "#a5b4fc"; });
-searchInput.addEventListener("blur",  () => { searchInput.style.borderColor = "rgba(99,102,241,.16)"; });
+searchInput.addEventListener("blur", () => { searchInput.style.borderColor = "rgba(99,102,241,.16)"; });
 document.querySelector(".shell").insertBefore(searchInput, statsEl);
 
 let toastTimer = null;
 function toast(msg) {
   const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove("show"), 1600);
+  el.textContent = msg; el.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), 1800);
 }
-
 function tick() {
-  const d = new Date();
-  const p = n => String(n).padStart(2, "0");
+  const d = new Date(), p = n => String(n).padStart(2, "0");
   document.getElementById("clock").textContent = p(d.getHours()) + ":" + p(d.getMinutes()) + ":" + p(d.getSeconds());
-  const wk = ["日","一","二","三","四","五","六"][d.getDay()];
-  document.getElementById("today").textContent =
-    d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日 星期" + wk;
+  document.getElementById("today").textContent = d.getFullYear() + "年" + (d.getMonth()+1) + "月" + d.getDate() + "日 星期" + "日一二三四五六"[d.getDay()];
 }
-
 window.addEventListener("scroll", closePop, { passive: true });
 window.addEventListener("resize", closePop);
 
-tick();
-setInterval(tick, 1000);
-renderAll();
+/* ================= 启动：拉取 GitHub 数据 ================= */
+async function boot() {
+  STUDENTS.forEach(s => { state[s.id] = { status: "in", note: "" }; });
+  await loadData(true);
+  renderAll();
+}
+tick(); setInterval(tick, 1000);
+boot();
 </script>
 </body>
 </html>
